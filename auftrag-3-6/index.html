@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kantonswappen-Memory</title>
+    <script>
+        const cards = ["ag", "be", "fr", "gr", "ne", "sg", "sz", "ur", "zg", "ai", "bl", "ge", "ju", "nw", "sh", "tg", "vd", "zh", "ar", "bs", "gl", "lu", "ow", "so", "ti", "vs"];
+
+        function createCard(symbol) {
+            const card = document.createElement("img");
+            card.src = `./img/${symbol}.png`;
+            return card;
+        }
+
+        function initializeBoard() {
+            const board = document.getElementById("board");
+            cards.sort(() => 0.5 - Math.random()).slice(0, 10).forEach(
+                (card) => board.appendChild(createCard(card))
+            );
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initializeBoard();
+        });
+    </script>
+</head>
+<body>
+    <div id="board">
+    </div>
+</body>
+</html>
