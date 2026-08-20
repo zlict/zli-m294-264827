@@ -8,16 +8,17 @@
         #board {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 100px);
         }
 
         #board img {
-            /*opacity: 0;
-            visibility: hidden;
-            cursor: pointer;*/
             filter: contrast(0);
             transition: 1s;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
 
-            &:hover {
+            &.selected {
                 filter: none;
             }
         }
@@ -25,10 +26,17 @@
     </style>
     <script>
         const cards = ["ag", "be", "fr", "gr", "ne", "sg", "sz", "ur", "zg", "ai", "bl", "ge", "ju", "nw", "sh", "tg", "vd", "zh", "ar", "bs", "gl", "lu", "ow", "so", "ti", "vs"];
+        const selectedCards = [];
+
+        function selectCard() {
+            this.classList.toggle("selected");
+            selectedCards.push(this);
+        }
 
         function createCard(symbol) {
             const card = document.createElement("img");
             card.src = `./img/${symbol}.png`;
+            card.addEventListener("click", selectCard);
             return card;
         }
 
