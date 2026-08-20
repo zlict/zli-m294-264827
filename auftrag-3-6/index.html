@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kantonswappen-Memory</title>
+    <style>
+        #board {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        #board img {
+            /*opacity: 0;
+            visibility: hidden;
+            cursor: pointer;*/
+            filter: contrast(0);
+            transition: 1s;
+
+            &:hover {
+                filter: none;
+            }
+        }
+
+    </style>
     <script>
         const cards = ["ag", "be", "fr", "gr", "ne", "sg", "sz", "ur", "zg", "ai", "bl", "ge", "ju", "nw", "sh", "tg", "vd", "zh", "ar", "bs", "gl", "lu", "ow", "so", "ti", "vs"];
 
@@ -15,7 +34,10 @@
 
         function initializeBoard() {
             const board = document.getElementById("board");
-            cards.sort(() => 0.5 - Math.random()).slice(0, 10).forEach(
+            const selectedCards = cards.sort(() => 0.5 - Math.random()).slice(0, 10);
+            const allCards = [...selectedCards, ...selectedCards];
+            allCards.sort(() => 0.5 - Math.random());
+            allCards.forEach(
                 (card) => board.appendChild(createCard(card))
             );
         }
